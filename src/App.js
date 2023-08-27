@@ -32,7 +32,7 @@ export default function App() {
     <Container alignItems={"center"}>
       <TopBar />
       <Input placeholder="write here" />
-      <Button>Submit</Button>
+      <Button mt={2}>Submit</Button>
     </Container>
   );
 }
