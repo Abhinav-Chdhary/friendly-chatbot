@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import TopBar from "./Components/TopBar";
 
 export default function App() {
-  const API_KEY = "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";
+  const API_KEY = process.env.REACT_APP_OPENAI_API_KEY;
   const [prompt, setPrompt] = useState("");
   const loadCompletion = async () => {
     try {
@@ -26,7 +26,7 @@ export default function App() {
   };
   const handleSubmit = (event) => {
     event.preventDefault();
-    //console.log(prompt);
+    console.log(API_KEY);
   };
   const handleChange = (event) => {
     setPrompt(event.target.value);
