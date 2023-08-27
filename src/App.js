@@ -1,10 +1,10 @@
 import { Button, Container, Input } from "@chakra-ui/react";
-import React from "react";
-import { useEffect } from "react";
+import React, { useState } from "react";
 import TopBar from "./Components/TopBar";
 
 export default function App() {
   const API_KEY = "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";
+  const [prompt, setPrompt] = useState("");
   const loadCompletion = async () => {
     try {
       let response = await fetch("https://api.openai.com/v1/completions", {
@@ -24,15 +24,25 @@ export default function App() {
       alert("An unexpected error occured:");
     }
   };
-  useEffect(() => {
-    //loadCompletion();
-  }, []);
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    //console.log(prompt);
+  };
+  const handleChange = (event) => {
+    setPrompt(event.target.value);
+  };
 
   return (
     <Container alignItems={"center"}>
       <TopBar />
-      <Input placeholder="write here" />
-      <Button mt={2}>Submit</Button>
+      <Input
+        placeholder="write prompt here"
+        value={prompt}
+        onChange={handleChange}
+      />
+      <Button mt={2} type="submit" onClick={handleSubmit}>
+        Submit
+      </Button>
     </Container>
   );
 }
