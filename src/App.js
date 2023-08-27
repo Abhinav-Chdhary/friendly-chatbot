@@ -26,7 +26,7 @@ export default function App() {
   };
   const handleSubmit = (event) => {
     event.preventDefault();
-    console.log(API_KEY);
+    loadCompletion();
   };
   const handleChange = (event) => {
     setPrompt(event.target.value);
