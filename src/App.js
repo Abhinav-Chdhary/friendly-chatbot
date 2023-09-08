@@ -1,10 +1,11 @@
-import { Button, Container, Input } from "@chakra-ui/react";
+import { Button, Container, Input, Text } from "@chakra-ui/react";
 import React, { useState } from "react";
 import TopBar from "./Components/TopBar";
 
 export default function App() {
   const API_KEY = process.env.REACT_APP_OPENAI_API_KEY;
   const [prompt, setPrompt] = useState("");
+  const [response, setResponse] = useState("");
   const loadCompletion = async () => {
     try {
       let response = await fetch("https://api.openai.com/v1/completions", {
@@ -19,7 +20,7 @@ export default function App() {
         }),
       });
       const json = await response.json();
-      console.log(json);
+      setResponse(json.choices[0].text);
     } catch (error) {
       alert("An unexpected error occured:");
     }
@@ -43,6 +44,7 @@ export default function App() {
       <Button mt={2} type="submit" onClick={handleSubmit}>
         Submit
       </Button>
+      <Text>{response}</Text>
     </Container>
   );
 }
