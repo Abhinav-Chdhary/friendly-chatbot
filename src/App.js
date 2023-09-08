@@ -16,7 +16,7 @@ export default function App() {
         },
         body: JSON.stringify({
           model: "text-davinci-003",
-          prompt: "hello, how are you today?",
+          prompt: `${prompt}`,
         }),
       });
       const json = await response.json();
@@ -44,7 +44,7 @@ export default function App() {
       <Button mt={2} type="submit" onClick={handleSubmit}>
         Submit
       </Button>
-      <Text>{response}</Text>
+      <Text mt={2}>{response}</Text>
     </Container>
   );
 }
